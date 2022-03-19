@@ -147,8 +147,6 @@ export default function InscriptionSejour() {
   //-----------------------------------------------
 
 
-
-
   return (
     <>
       <Row className="g-0">
@@ -222,8 +220,7 @@ export default function InscriptionSejour() {
               columns={columns}
               pageSize={20}
               getRowId={(row) => row._id}
-              disableSelectionOnClick
-            />
+              disableSelectionOnClick/>
           </div>
         </Col>
       </Row>
