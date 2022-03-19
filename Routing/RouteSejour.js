@@ -8,4 +8,5 @@
  router.get("/", controle.getSejours);
 
  router.delete("/:id", adminController.isLoggedIn, controle.deleteSejour);
+ 
  module.exports = router;

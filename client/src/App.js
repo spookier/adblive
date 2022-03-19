@@ -3,7 +3,7 @@ import React, {useState} from "react";
 
 import Accueil from "./Components/Accueil";
 import Connexion from "./Components/Connexion";
-import InscriptionUtilisateur from "./Components/InscriptionUtilisateur";
+import InscriptionAdmin from "./Components/InscriptionAdmin";
 import InscriptionLicencie from "./Components/InscriptionLicencie";
 import AdminDashboard from "./Components/AdminDashboard";
 import NavBar from "./Components/NavBar";
@@ -32,7 +32,7 @@ function App() {
         <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscriptionLicenciee" element={<InscriptionLicencie />} />
-        <Route path="/inscriptionUser" element={<InscriptionUtilisateur />} />
+        <Route path="/inscriptionAdmin" element={<InscriptionAdmin />} />
         <Route path="/inscriptionSejour" element={<InscriptionSejour />} />
       </Routes>
     </Router>

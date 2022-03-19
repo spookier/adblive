@@ -3,9 +3,6 @@ import TokenContext from "../Context";
 import { Navbar, Nav } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const Admin = require("../models/Admin");
-
-
 export default function NavBar() {
 
   const { token, setToken } = useContext(TokenContext);
