@@ -7,7 +7,7 @@ const path = require("path");
 
 
 const RouteSponsor = require("./Routing/RouteSponsor");
-const RouteUtilisateur = require("./Routing/RouteUtilisateur");
+const RouteAdmin = require("./Routing/RouteAdmin");
 const RouteLicencies = require("./Routing/RouteLicences");
 const RouteSejour = require("./Routing/RouteSejour");
 
@@ -31,14 +31,14 @@ mongoose.connect(process.env.MONGO_URI,
 
 
 //Routing des liens
-app.use("/api/user", RouteUtilisateur);
+app.use("/api/admin", RouteAdmin);
 app.use("/api/licencies", RouteLicencies);
 app.use("/api/sponsor", RouteSponsor);
 app.use("/api/sejour", RouteSejour);
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 
-
+                                                                                                                                                 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
