@@ -35,7 +35,7 @@ export default function InscriptionSejour() {
   //On stock ici la liste GET des séjours pour ensuite l'afficher
   const [listeSejours, setListeSejours] = useState([]);
 
-  //Pour le DELETE
+  //Pour le DELETE reactif
   const[idDelete, setIdDelete] = useState("");
 
   //Material UI data table
