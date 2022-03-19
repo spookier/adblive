@@ -1,0 +1,31 @@
+.leftside, .rightside {
+
+  height:50vh;
+  width:60%;
+  
+}
+
+.leftside {
+  background: white;
+
+}
+
+.rightside{
+  background: whitesmoke;
+}
+
+.sejoursEdit{
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #31e981;
+  color:white;
+  cursor:pointer;
+  margin-right: 20px;
+
+}
+
+.sejoursDelete{
+  color:red;
+  cursor:pointer;
+}
