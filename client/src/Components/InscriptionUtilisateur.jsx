@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button, Type } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
 //L'admin il va enregistrer un nouveau compte ici
 export default function InscriptionUtilisateur() {

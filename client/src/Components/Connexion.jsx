@@ -24,7 +24,6 @@ export default function Connexion() {
 
     axios.post("/api/user/login", userInfo)
       .then((resultat) => {
-        console.log(resultat.data.token);
         const token = resultat.data.token;
         localStorage.setItem("token", token);
         setToken(token);
@@ -61,7 +60,5 @@ export default function Connexion() {
         </Form>
       </div>
     </>
-
-
   );
 }
