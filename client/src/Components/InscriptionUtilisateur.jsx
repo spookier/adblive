@@ -9,10 +9,6 @@ export default function InscriptionUtilisateur() {
   const [password, setPassword] = useState("");
   const [droits, setDroits] = useState("");         // user = read-only, admin = tous les accées
 
-  //Pour changer les buttons radio sur leur valeur respective
-  // const handleDroits = (e) => {
-  //   setDroits(e.target.value);
-  // }
 
   //Quand on valide le formulaire 
   const handleInscription = (event) => {
@@ -27,7 +23,7 @@ export default function InscriptionUtilisateur() {
     };
 
     axios
-      .post("/api/user/signUp", userInfo)
+      .post("/api/admin/signUp", userInfo)
       .then((result) => console.log(result))
       .catch((err) => console.log(err.response))
   }
@@ -85,7 +81,6 @@ export default function InscriptionUtilisateur() {
               </div>
             ))}
           </div>
-
 
           <div className="col-md-12 text-center">
             <Button variant="outline-dark" type="submit">Créer utilisateur</Button>

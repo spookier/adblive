@@ -1,17 +1,17 @@
  const express = require("express");
  const router = express.Router();
  const controle = require("../controllers/LicenciesController");
- const userController = require("../controllers/UtilisateurController");
+ const adminController = require("../controllers/AdminController");
 
  router.get("/getAll", controle.getAll);
 
- router.post("/createBenevole", userController.isLoggedIn, controle.createBenevole);
+ router.post("/createBenevole", adminController.isLoggedIn, controle.createBenevole);
  router.get("/getBenevoles", controle.getBenevoles);
 
- router.post("/createEducateur", userController.isLoggedIn, controle.createEducateur);
+ router.post("/createEducateur", adminController.isLoggedIn, controle.createEducateur);
  router.get("/getEducateurs", controle.getEducateurs);
 
- router.post("/createJoueur", userController.isLoggedIn, controle.createJoueur);
+ router.post("/createJoueur", adminController.isLoggedIn, controle.createJoueur);
  router.get("/getJoueurs", controle.getJoueurs);
 
  module.exports = router;

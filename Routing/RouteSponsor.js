@@ -1,17 +1,17 @@
  const express = require("express");
  const router = express.Router();
  const controle = require("../controllers/SponsorController");
- const userController = require("../controllers/UtilisateurController");
+ const adminController = require("../controllers/AdminController");
 
 
- router.post("/", userController.isLoggedIn, controle.createSponsor);
+ router.post("/", adminController.isLoggedIn, controle.createSponsor);
 
  router.get("/", controle.getSponsors);
  
  router.get("/:id", controle.getSponsor);
 
- router.delete("/:id", userController.isLoggedIn, controle.deleteSponsor);
+ router.delete("/:id", adminController.isLoggedIn, controle.deleteSponsor);
 
- router.patch("/:id", userController.isLoggedIn, controle.updateSponsor);
+ router.patch("/:id", adminController.isLoggedIn, controle.updateSponsor);
 
  module.exports = router;

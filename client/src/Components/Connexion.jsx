@@ -7,7 +7,7 @@ import { Form, Button } from "react-bootstrap";
 import "./Connexion.css";
 
 export default function Connexion() {
-  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
   const { setToken } = useContext(TokenContext);
@@ -18,11 +18,11 @@ export default function Connexion() {
     event.preventDefault();
 
     const userInfo = {
-      email,
+      login,
       password,
     };
 
-    axios.post("/api/user/login", userInfo)
+    axios.post("/api/admin/login", userInfo)
       .then((resultat) => {
         const token = resultat.data.token;
         localStorage.setItem("token", token);
@@ -42,17 +42,20 @@ export default function Connexion() {
         <br />
         <Form onSubmit={handleConnexion}>
           <Form.Group className="mb-3" controlId="ControlInput">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="nom@example.com" value={email} onChange={(event) => setEmail(event.target.value)} />
+            <Form.Label>Login</Form.Label>
+            <Form.Control value={login} onChange={(event) => setLogin(event.target.value)} />
           </Form.Group>
+
           <Form.Label htmlFor="inputPassword">
             Mot de passe</Form.Label>
+
           <Form.Control
             type="password"
             id="inputPassword"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
+
           <br />
           <div className="col-md-12 text-center">
             <Button variant="outline-dark" type="submit">Se connecter</Button>

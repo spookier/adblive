@@ -2,7 +2,7 @@ const Benevole = require("../models/Licencies/Benevole");
 const Educateur = require("../models/Licencies/Educateur");
 const Joueur = require("../models/Licencies/Joueur");
 
-const Utilisateur = require("../models/Utilisateur");
+const Admin = require("../models/Admin");
 
 exports.getAll = async(req, res)=>
 {

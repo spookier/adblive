@@ -1,11 +1,11 @@
  const express = require("express");
  const router = express.Router();
  const controle = require("../controllers/SejourController");
- const userController = require("../controllers/UtilisateurController");
+ const adminController = require("../controllers/AdminController");
 
 
- router.post("/createSejour", userController.isLoggedIn, controle.createSejour);
+ router.post("/createSejour", adminController.isLoggedIn, controle.createSejour);
  router.get("/", controle.getSejours);
 
- router.delete("/:id", userController.isLoggedIn, controle.deleteSejour);
+ router.delete("/:id", adminController.isLoggedIn, controle.deleteSejour);
  module.exports = router;

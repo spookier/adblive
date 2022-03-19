@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const controle = require("../controllers/UtilisateurController");
+const controle = require("../controllers/AdminController");
 
-router.post("/signUp", controle.signUp);
+router.post("/signUp", controle.signUp); //Créer un compte Admin
 router.post("/login", controle.login);
 
 module.exports = router;
