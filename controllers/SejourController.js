@@ -36,9 +36,9 @@ exports.deleteSejour = async(req, res) =>
   try 
   {
     const idSejour = req.params.id;
-    let user = await Admin.create(req.body);
+    //let user = await Admin.create(req.body);
 
-    console.log(` ${user.login} deleted sejour ${idSejour}`);
+    //console.log(` ${user.login} deleted sejour ${idSejour}`);
     let sejour = await Sejour.findByIdAndDelete(idSejour);
     
     res.status(200).json(sejour);
