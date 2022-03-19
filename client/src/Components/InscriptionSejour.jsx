@@ -35,6 +35,8 @@ export default function InscriptionSejour() {
   //On stock ici la liste GET des séjours pour ensuite l'afficher
   const [listeSejours, setListeSejours] = useState([]);
 
+  //Pour le DELETE
+  const[idDelete, setIdDelete] = useState("");
 
   //Material UI data table
   const columns = [
@@ -119,6 +121,9 @@ export default function InscriptionSejour() {
   //Trigger du onClick de l'icon Delete
   const handleDelete = (id) => 
   {
+    setIdDelete(id); //on stock le id a delete pour l'utiliser dans le useEffect du displaygrid
+
+    setListeSejours(listeSejours.filter(item => item._id !== idDelete));
 
     const config = {
       headers: { "Authorization": `Bearer ${token}` },
@@ -127,17 +132,21 @@ export default function InscriptionSejour() {
     axios.delete(`/api/sejour/${id}`, config)
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
+
   }
 
+
   //-----------------------------------------------
-  //Appelle du back-end pour remplir la datagrid
+  //DISPLAYGRID - Appelle du back-end pour remplir la datagrid + render apres le DELETE, trouver le id as effacer
   useEffect(() => {
     fetch("/api/sejour/")
       .then((data) => data.json())
       .then((data) => setListeSejours(data))
     isSubmitting(false);
-  }, [submit]);
+  }, [submit, idDelete]);
   //-----------------------------------------------
+
+
 
 
   return (
