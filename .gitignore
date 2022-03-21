@@ -1,0 +1,7 @@
+backup/
+.DS_Store
+node_modules/
+.env
+*.orig
+.idea/
+.vscode/

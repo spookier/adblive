@@ -1,0 +1,52 @@
+.leftside, .rightside {
+
+  height:60vh;
+  width:65%;
+  
+}
+
+.leftside {
+  background: white;
+
+}
+
+.rightside{
+  background: whitesmoke;
+  color: whitesmoke;
+}
+
+.sejoursEdit{
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #31e981;
+  color:white;
+  cursor:pointer;
+  margin-right: 20px;
+
+}
+
+.sejoursDelete{
+  color:red;
+  cursor:pointer;
+}
+
+/* For REACT Table, adding missing carets */
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid \9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+  }
+  
+.dropup .caret, .navbar-fixed-bottom .dropdown .caret {
+    border-top: 0;
+    border-bottom: 4px dashed;
+    border-bottom: 4px solid \9;
+    content: "";
+}
