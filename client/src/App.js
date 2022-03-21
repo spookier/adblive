@@ -1,7 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import React, {useState} from "react";
 
-import Accueil from "./Components/Accueil";
 import Connexion from "./Components/Connexion";
 import InscriptionAdmin from "./Components/InscriptionAdmin";
 import InscriptionLicencie from "./Components/InscriptionLicencie";
@@ -25,17 +24,38 @@ function App() {
   //On utilise inscrSejourContext dans 2 endroits, @SearchPage & @InscriptionSejour, des que y'as un post ou un delete on change l'etat ce qui fait communiquer les deux composants
   const [inscrSejourContext, setInscrSejourContext] = useState(null); 
 
+
+  //Ajout de la protection des routes
+  const ProtectedRoute = ({children }) =>    
+  {
+  if (!token) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return children;
+};
+
   return (
   <Provider value={{token, setToken, inscrSejourContext, setInscrSejourContext}}>
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Accueil />} />
+        <Route path="/" element={<AdminDashboard />} />
         <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscriptionLicenciee" element={<InscriptionLicencie />} />
-        <Route path="/inscriptionAdmin" element={<InscriptionAdmin />} />
-        <Route path="/inscriptionSejour" element={<InscriptionSejour />} />
+
+        <Route path="/inscriptionAdmin" element= {
+          <ProtectedRoute>
+          <InscriptionAdmin />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/inscriptionSejour" 
+        element={ <ProtectedRoute>
+          <InscriptionSejour />
+          </ProtectedRoute>} />
+          
         <Route path="/search" element={<Search />} />
       </Routes>
     </Router>
