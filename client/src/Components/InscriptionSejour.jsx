@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
+// import React, { useEffect } from "react";
 import axios from "axios";
 
 //Style (bootstrap, material)
@@ -28,13 +29,13 @@ export default function InscriptionSejour() {
   const { token } = useContext(TokenContext);
 
   //Variables d'etat utilisees pour refresh la datagrid & ajouter nouveau sejour
-  const [submit, isSubmitting] = useState(false);
+  // const [submit, isSubmitting] = useState(false);
 
   //On stock ici la liste GET des séjours pour ensuite l'afficher
-  const [listeSejours, setListeSejours] = useState([]);
+  // const [listeSejours, setListeSejours] = useState([]);
 
   //Pour le DELETE dynamic
-  const[idDelete, setIdDelete] = useState("");
+  // const[idDelete, setIdDelete] = useState("");
 
 
   //DATA TABLE COLUMNS
@@ -47,8 +48,6 @@ export default function InscriptionSejour() {
   //   { field: 'typeParticipation', headerName: 'Type participation', sort: true, },
   //   { field: 'totalPrixSejour', type:"number", headerName: 'Prix total', sort: true,},
   // ];
-
-  
 
 
 
@@ -76,7 +75,7 @@ export default function InscriptionSejour() {
   //Trigger quand on valide le formulaire 
   const handleInscription = (event) => {
     event.preventDefault();
-    isSubmitting(true);
+    // isSubmitting(true);
 
     //On fournit cet objet à axios
     const userInfo =
@@ -130,15 +129,15 @@ export default function InscriptionSejour() {
 
   //-----------------------------------------------
   //DISPLAYGRID - Appelle du back-end pour remplir la datagrid + render apres le DELETE, trouver le id as effacer
-  useEffect(() => 
-  {
+  // useEffect(() => 
+  // {
     // fetch("/api/sejour/")
     //   .then((data) => data.json())
     //   .then((data) => setListeSejours(data))
       
-    isSubmitting(false);
+  //   isSubmitting(false);
 
-  }, [submit, idDelete]);
+  // }, [submit, idDelete]);
   //-----------------------------------------------
 
 

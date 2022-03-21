@@ -47,7 +47,7 @@ export default function SearchPage() {
   ];
 
   const handleDelete = (row) => {
-    setData(data.filter(item => item._id !== row._id)); //on efface l'element du datagrid
+    //setData(data.filter(item => item._id !== row._id)); //on efface l'element du datagrid
     
      const config =  {
       headers: { "Authorization": `Bearer ${token}` },
