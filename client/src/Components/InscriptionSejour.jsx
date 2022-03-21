@@ -3,13 +3,12 @@ import axios from "axios";
 
 //Style (bootstrap, material)
 import { Form, Button, Row, Col } from "react-bootstrap";
-import { DataGrid } from '@mui/x-data-grid';
 import { DeleteOutline } from '@mui/icons-material';
 
-import { makeStyles } from '@mui/styles';
 import "./Inscription.css";
 
 import TokenContext from "../Context";
+import SearchPage from "./SearchPage";
 
 
 //L'admin il va enregistrer un nouveau compte ici
@@ -35,26 +34,36 @@ export default function InscriptionSejour() {
   //On stock ici la liste GET des séjours pour ensuite l'afficher
   const [listeSejours, setListeSejours] = useState([]);
 
-  //Pour le DELETE reactif
+  //Pour le DELETE dynamic
   const[idDelete, setIdDelete] = useState("");
 
-  //Material UI data table
+  //Pour le search dynamic
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [listeSearch, setListeSearch] = useState([]);
+
+
+  //DATA TABLE COLUMNS
   const columns = [
-    { field: 'type', headerName: 'Type séjour', width: 130 },
-    { field: 'nomParticipant', headerName: 'Nom', width: 140 },
-    { field: 'prenomParticipant', headerName: 'Prenom', width: 140 },
-    { field: 'telParticipant', headerName: 'Téléphone', width: 100 },
-    { field: 'dateSaisie', headerName: 'Date séjour', type: "date", width: 100 },
-    { field: 'typeParticipation', headerName: 'Type participation', width: 130 },
-    { field: 'totalPrixSejour', headerName: 'Prix total', type: "number", width: 80 },
+    { field: 'type', headerName: 'Type séjour', sort:true, },
+    { field: 'nomParticipant', headerName: 'Nom', sort:true, },
+    { field: 'prenomParticipant', headerName: 'Prenom', sort: true, },
+    { field: 'telParticipant', headerName: 'Téléphone', sort: true, },
+    { field: 'dateSaisie', headerName: 'Date séjour', type:'date', sort: true, },
+    { field: 'typeParticipation', headerName: 'Type participation', sort: true, },
+    { field: 'totalPrixSejour', type:"number", headerName: 'Prix total', sort: true,},
   ];
+
+  
+
+
 
   //-----------------------------------------------------------------------
   //Droits d'admin pour la datagrid, si token existe ajouter une nouvelle Column Edit & Delete
   const handleIfAdmin = () => {
-    if (token) {
+    if (token) 
+    {
       columns.push({
-        field: "action", headerName: "", width: 100,
+        field: "action", headerName: "OK",
         renderCell: (params) => {
           return (
             <>
@@ -68,20 +77,6 @@ export default function InscriptionSejour() {
   }
   handleIfAdmin(); //Appelle de la fonction a chaque render
   //-----------------------------------------------------------------------
-
-
-  //-------------------------------------
-  // Enlever le blue outline du datagrid
-  const useStyles = makeStyles({
-    root: {
-      '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus': {
-        outline: 'none',
-      },
-    }
-  });
-  const classes = useStyles();
-  //------------------------------------
-
 
   //Trigger quand on valide le formulaire 
   const handleInscription = (event) => {
@@ -118,12 +113,13 @@ export default function InscriptionSejour() {
       .catch((err) => console.log(err.response))
   }
 
+
   //Trigger du onClick de l'icon Delete
   const handleDelete = (id) => 
   {
     setIdDelete(id); //on stock le id a delete pour l'utiliser dans le useEffect du displaygrid
 
-    setListeSejours(listeSejours.filter(item => item._id !== idDelete));
+    setListeSejours(listeSejours.filter(item => item._id !== idDelete)); //on efface l'element du datagrid
 
     const config = {
       headers: { "Authorization": `Bearer ${token}` },
@@ -138,14 +134,19 @@ export default function InscriptionSejour() {
 
   //-----------------------------------------------
   //DISPLAYGRID - Appelle du back-end pour remplir la datagrid + render apres le DELETE, trouver le id as effacer
-  useEffect(() => {
+  useEffect(() => 
+  {
     fetch("/api/sejour/")
       .then((data) => data.json())
       .then((data) => setListeSejours(data))
+      
     isSubmitting(false);
+
   }, [submit, idDelete]);
   //-----------------------------------------------
 
+
+  
 
   return (
     <>
@@ -214,13 +215,23 @@ export default function InscriptionSejour() {
           </div>
         </Col>
         <Col className="g-0 p-2">
-          <div className="rightside" style={{ height: 800, width: '100%' }}>
-            <DataGrid className={classes.root}      //Ce className = enlever le blue outline
+          
+          {/* <div className="d-flex flex-row-reverse cherche">
+            <Form.Control className="w-25" type="text" placeholder="Chercher" onChange={event => {setSearchTerm(event.target.value)}}/>
+          </div> */}
+         
+
+          <div className="rightside" style={{height:"100%", width: '99%' }}>
+            <SearchPage />
+            {/* <DataGrid className={classes.root}      //Ce className = enlever le blue outline
+
+              // rows={listeSearch.length <= 0 ? listeSejours : listeSearch}
               rows={listeSejours}
               columns={columns}
               pageSize={20}
               getRowId={(row) => row._id}
-              disableSelectionOnClick/>
+              disableSelectionOnClick
+              /> */}
           </div>
         </Col>
       </Row>

@@ -8,10 +8,9 @@ import InscriptionLicencie from "./Components/InscriptionLicencie";
 import AdminDashboard from "./Components/AdminDashboard";
 import NavBar from "./Components/NavBar";
 import InscriptionSejour from "./Components/InscriptionSejour";
+import Search from "./Components/SearchPage";
 
 import TokenContext from "./Context";
-
-
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -34,6 +33,7 @@ function App() {
         <Route path="/inscriptionLicenciee" element={<InscriptionLicencie />} />
         <Route path="/inscriptionAdmin" element={<InscriptionAdmin />} />
         <Route path="/inscriptionSejour" element={<InscriptionSejour />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </Router>
   </Provider>
