@@ -9,7 +9,6 @@ import TokenContext from "../Context";
 export default function SearchPage() {
 
   const [data, setData] = useState([]);
-
   const { token } = useContext(TokenContext);
 
   const { SearchBar } = Search;
