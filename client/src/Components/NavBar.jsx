@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import TokenContext from "../Context";
+import Context from "../Context";
 import { Navbar, Nav } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
 
-  const { token, setToken } = useContext(TokenContext);
+  const { token, setToken } = useContext(Context);
 
   const navigate = useNavigate();
 

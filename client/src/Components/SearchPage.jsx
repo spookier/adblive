@@ -4,18 +4,20 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit'; //Utiliser cette import au lieu de l'original pour la derniere version hotfixed
 import paginationFactory from "react-bootstrap-table2-paginator";
 
-import TokenContext from "../Context";
+import Context from "../Context";
 
 export default function SearchPage() {
 
   const [data, setData] = useState([]);
-  const { token } = useContext(TokenContext);
+  const { token, inscrSejourContext, setInscrSejourContext } = useContext(Context);
 
   const { SearchBar } = Search;
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     getData();
-  }, [data])
+    setInscrSejourContext(null); //on reset le Context a null
+  }, [inscrSejourContext])  
 
 
   const getData = () => {
@@ -40,6 +42,7 @@ export default function SearchPage() {
             <button
               className="btn btn-danger btn-xs"
               onClick={() => handleDelete(row)}>Delete</button >)
+              
         }
         ;
       },
@@ -47,15 +50,16 @@ export default function SearchPage() {
   ];
 
   const handleDelete = (row) => {
-    //setData(data.filter(item => item._id !== row._id)); //on efface l'element du datagrid
-    
-     const config =  {
+    const config = {
       headers: { "Authorization": `Bearer ${token}` },
     };
 
     axios.delete(`/api/sejour/${row._id}`, config)
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
+
+    setInscrSejourContext(false);
+
   };
 
 

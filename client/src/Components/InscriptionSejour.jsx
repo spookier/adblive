@@ -7,7 +7,7 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 
 import "./Inscription.css";
 
-import TokenContext from "../Context";
+import Context from "../Context";
 import SearchPage from "./SearchPage";
 
 
@@ -26,7 +26,8 @@ export default function InscriptionSejour() {
   const [subvention, setSubvention] = useState("");
   const [autofinancement, setAutofinancement] = useState("");
   const [totalPrixSejour, setTotalPrixSejour] = useState("");
-  const { token } = useContext(TokenContext);
+
+  const { token, setInscrSejourContext } = useContext(Context);
 
   //Variables d'etat utilisees pour refresh la datagrid & ajouter nouveau sejour
   // const [submit, isSubmitting] = useState(false);
@@ -76,7 +77,7 @@ export default function InscriptionSejour() {
   const handleInscription = (event) => {
     event.preventDefault();
     // isSubmitting(true);
-
+    setInscrSejourContext(true);
     //On fournit cet objet à axios
     const userInfo =
     {
@@ -131,17 +132,17 @@ export default function InscriptionSejour() {
   //DISPLAYGRID - Appelle du back-end pour remplir la datagrid + render apres le DELETE, trouver le id as effacer
   // useEffect(() => 
   // {
-    // fetch("/api/sejour/")
-    //   .then((data) => data.json())
-    //   .then((data) => setListeSejours(data))
-      
+  // fetch("/api/sejour/")
+  //   .then((data) => data.json())
+  //   .then((data) => setListeSejours(data))
+
   //   isSubmitting(false);
 
   // }, [submit, idDelete]);
   //-----------------------------------------------
 
 
-  
+
 
   return (
     <>
@@ -210,13 +211,13 @@ export default function InscriptionSejour() {
           </div>
         </Col>
         <Col className="g-0 p-2">
-          
+
           {/* <div className="d-flex flex-row-reverse cherche">
             <Form.Control className="w-25" type="text" placeholder="Chercher" onChange={event => {setSearchTerm(event.target.value)}}/>
           </div> */}
-         
 
-          <div className="rightside" style={{height:"100%", width: '99.9%' }}>
+
+          <div className="rightside" style={{ height: "100%", width: '99.9%' }}>
             <SearchPage />
             {/* <DataGrid className={classes.root}      //Ce className = enlever le blue outline
 

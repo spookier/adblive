@@ -20,10 +20,13 @@ function App() {
 
   //Pour éviter de donner la valeaur initiale (null)
   const valueToken = localStorage.getItem("token") ? localStorage.getItem("token") : "";
-  const [token, setToken] = useState(valueToken);
+  const [token, setToken] = useState(valueToken); 
+
+  //On utilise inscrSejourContext dans 2 endroits, @SearchPage & @InscriptionSejour, des que y'as un post ou un delete on change l'etat ce qui fait communiquer les deux composants
+  const [inscrSejourContext, setInscrSejourContext] = useState(null); 
 
   return (
-  <Provider value={{token, setToken}}>
+  <Provider value={{token, setToken, inscrSejourContext, setInscrSejourContext}}>
     <Router>
       <NavBar />
       <Routes>
