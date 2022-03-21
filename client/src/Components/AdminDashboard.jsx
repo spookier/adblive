@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import Context from "../Context";
 
 export default function Dashboard() {
+
+  const { token } = useContext(Context);
+
   return (
     <div>
       <label style={{ position: "relative", left: "45%", top: "-35px", color: "whitesmoke" }}>ADMIN DASHBOARD</label>
@@ -11,7 +15,8 @@ export default function Dashboard() {
       <Container fluid="md">
         <Row>
           <Col>
-            <h2><Link to="/inscriptionSejour">SEJOURS</Link></h2>
+            {token ? <h2><Link to="/inscriptionSejour">SEJOURS</Link></h2> : <h2><Link to="/search">SEJOURS</Link></h2>}
+
           </Col>
           <Col><h2>MATERIEL</h2></Col>
           <Col>

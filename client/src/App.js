@@ -21,7 +21,7 @@ function App() {
   const valueToken = localStorage.getItem("token") ? localStorage.getItem("token") : "";
   const [token, setToken] = useState(valueToken); 
 
-  //On utilise inscrSejourContext dans 2 endroits, @SearchPage & @InscriptionSejour, des que y'as un post ou un delete on change l'etat ce qui fait communiquer les deux composants
+  //On utilise inscrSejourContext dans 2 endroits, @SearchPage & @InscriptionSejour, des que y'as un post ou un delete on change l'etat ce qui fait communiquer les deux composants et arrete le render non stop du datagrid ce qui nous donne le temps d'ecrire dans le Search
   const [inscrSejourContext, setInscrSejourContext] = useState(null); 
 
 
