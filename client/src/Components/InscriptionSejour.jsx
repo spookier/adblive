@@ -29,6 +29,7 @@ export default function InscriptionSejour() {
 
   const { token, setInscrSejourContext } = useContext(Context);
 
+
   //Variables d'etat utilisees pour refresh la datagrid & ajouter nouveau sejour
   // const [submit, isSubmitting] = useState(false);
 
@@ -140,6 +141,8 @@ export default function InscriptionSejour() {
 
   // }, [submit, idDelete]);
   //-----------------------------------------------
+
+
 
 
 

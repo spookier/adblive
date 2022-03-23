@@ -18,6 +18,8 @@ const sejourSchema = mongoose.Schema({
   totalPrixSejour:Number, //en €
 }) 
 
+
+
 const Sejour = mongoose.model("Sejour", sejourSchema); 
 
 module.exports = Sejour;

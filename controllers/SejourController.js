@@ -43,3 +43,23 @@ exports.deleteSejour = async(req, res) =>
     res.status(500).json(error);
   }
 }
+
+exports.updateSejour = async (req, res) => {
+  try {
+    const {id} = req.params;
+    let sejour = await Sejour.findByIdAndUpdate(id, {$set: req.body});
+    res.status(200).json(sejour);
+  } catch (err) {
+    res.status(404).json({ message: `ID Incorrect ${err}` });
+  }
+};
+
+// exports.updateSejour = async (req, res) => {
+//   try {
+//     const id = req.params;
+//     let sejour = await Sejour.findByIdAndUpdate(id, req.body);
+//     res.status(200).json(sejour);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// };
